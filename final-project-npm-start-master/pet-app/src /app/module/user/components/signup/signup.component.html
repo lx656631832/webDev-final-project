@@ -1,0 +1,60 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<h2>Sign Up</h2>>
+<div class="sign_up">
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Username</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="3" nzErrorTip="Username can't be empty">
+          <input nz-input [(ngModel)]="userInfo.username" name="username" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Password</nz-form-label>
+        <div>
+          <nz-form-control [nzSpan]="3" nzHasFeedback nzErrorTip="Password cannot be less than 6 digits">
+            <nz-input-group [nzSuffix]="suffixTemplate">
+            <input nz-input [type]="passwordVisible ? 'text' : 'password'" name="password" [(ngModel)]="userInfo.password" required minlength="6"/>
+        </nz-input-group>
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+      
+      <!-- <nz-input-group [nzSuffix]="suffixTemplate">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              placeholder="input password"
+              [(ngModel)]="password"
+            />
+          </nz-input-group> -->
+
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Confirm Password</nz-form-label>
+        <div>
+          <nz-form-control [nzSpan]="3">
+            <nz-input-group [nzSuffix]="suffixTemplate">
+            <input nz-input [type]="passwordVisible ? 'text' : 'password'" name="passwordConfirm" [(ngModel)]="confirmPassword" required/>
+        </nz-input-group>
+            <span class="warning" *ngIf="confirmPassword!==''&&confirmPassword!==userInfo.password">
+                Password doesn't match
+            </span>
+          </nz-form-control>
+        </div>
+      </nz-form-item>
+
+      <ng-template #suffixTemplate>
+            <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Email</nz-form-label>
+        <nz-form-control nzHasFeedback [nzSpan]="3" nzErrorTip="Email is not valid">
+          <input nz-input [(ngModel)]="userInfo.email" name="email" email />
+        </nz-form-control>
+      </nz-form-item>
+      
+    <button nz-button nzType="primary" (click)="submit()">Sign Up</button>
+
+</div>

@@ -1,0 +1,50 @@
+<nz-header><h1>Petlist</h1></nz-header>
+<div class=layout>
+<nz-list
+      class="demo-loadmore-list"
+      [nzDataSource]="petlist"
+      [nzItemLayout]="'horizontal'"
+      [nzLoading]="initLoading"
+      [nzRenderItem]="item"
+      [nzLoadMore]="loadMore"
+    >
+      <ng-template #item let-item>
+        <nz-list-item
+          [nzActions]="item.loading ? [] : [editAction, deleteAction]"
+        >
+          <nz-skeleton [nzAvatar]="true" [nzActive]="true" [nzTitle]="false" [nzLoading]="item.loading">
+            <ng-template #editAction><button nz-button nzType="default" [routerLink]="['edit', item._id]">Edit</button></ng-template>
+            <ng-template #deleteAction><button
+              nz-button nzType="dashed"
+              nz-popconfirm
+              nzPopconfirmTitle="Are you sure delete this pet?"
+              nzPopconfirmPlacement="bottom"
+              (nzOnConfirm)="confirm(item._id)"
+              (nzOnCancel)="cancel()"
+              >Delete</button></ng-template>
+            
+            <nz-list-item-meta class="content" 
+              [nzTitle]="nzTitle"
+              nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              [nzDescription]="nzDescription"
+            >
+              <ng-template #nzTitle>
+                <p>{{ item.nickName }}</p>
+              </ng-template>
+              <ng-template #nzDescription>
+                <p>{{ item.gender }}</p>
+              </ng-template>
+            </nz-list-item-meta>
+          </nz-skeleton>
+        </nz-list-item>
+      </ng-template>
+ </nz-list>
+</div>
+<div>
+    <!-- <ng-template #loadMore>
+        <div class="loadmore">
+            <button nz-button *ngIf="!loadingMore" (click)="onLoadMore()">loading more</button>
+        </div>
+    </ng-template> -->
+    <button nz-button nzType="default" nzShape="circle" [routerLink]="['add']"><i nz-icon nzType="plus"></i></button>
+</div>

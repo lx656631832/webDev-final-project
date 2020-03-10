@@ -1,0 +1,28 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<h2>Log In</h2>
+<div class="login">
+        <nz-form-item>
+                <nz-form-label [nzSpan]="5" nzRequired>Username</nz-form-label>
+                <nz-form-control nzHasFeedback [nzSpan]="3" nzErrorTip="Username can't be empty">
+                  <input nz-input [(ngModel)]="username" name="username" />
+                </nz-form-control>
+            </nz-form-item>
+        
+            <nz-form-item>
+                <nz-form-label [nzSpan]="5" nzRequired>Password</nz-form-label>
+                <div>
+                  <nz-form-control [nzSpan]="3" nzHasFeedback nzErrorTip="Password can't be empty">
+                    <nz-input-group [nzSuffix]="suffixTemplate">
+                    <input nz-input [type]="passwordVisible ? 'text' : 'password'" name="password" [(ngModel)]="password" required/>
+                </nz-input-group>
+                  </nz-form-control>
+                </div>
+              </nz-form-item>
+
+              <ng-template #suffixTemplate>
+                    <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+                </ng-template>
+                <button nz-button nzType="primary" (click)="submit()">Log In</button>
+</div>
+

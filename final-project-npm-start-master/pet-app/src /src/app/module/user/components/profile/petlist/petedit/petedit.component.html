@@ -1,0 +1,25 @@
+<h1>Process Information of Pets </h1>
+<div>
+<p>NickName:&nbsp;<input nz-input placeholder="NickName" [(ngModel)]="NickName"/></p>
+<div>
+    Gender:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <nz-select nzPlaceHolder="Select a gender" [(ngModel)]="Gender">
+        <nz-option nzValue="female" nzLabel="female"></nz-option>
+        <nz-option nzValue="male" nzLabel="male"></nz-option>
+    </nz-select>
+</div>
+
+<div>Pet Type:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <nz-select
+        nzPlaceHolder="Please select pet type"
+        [(ngModel)]="Type"
+        >
+        <nz-option *ngFor="let option of petTypeList" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+        </nz-select>
+</div>
+<p>Age:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input nz-input placeholder="Age" [(ngModel)]="Age" /></p>
+</div>
+
+
+<button nz-button nzType="dashed" (click)="back()">Cancel</button>&nbsp;&nbsp;
+<button nz-button nzType="primary" value="confirm" (click)="updatePet()">Update</button>

@@ -1,0 +1,67 @@
+    
+    <div class="petBoarding" *ngIf="postType=='boarding'">
+        <div>Board Pet:
+        <nz-select nzPlaceHolder="Select a pet" [(ngModel)]="petSelected">
+            <nz-option *ngFor="let option of petlist" [nzLabel]="option.nickName" [nzValue]="option._id"></nz-option>
+        </nz-select>
+        </div>
+        <div>Time Period:
+        <nz-range-picker
+          nzFormat="yyyy-MM-dd"
+          [nzPlaceHolder]="['Start Time', 'End Time']"
+          ngModel
+          (ngModelChange)="onChange($event)"
+        ></nz-range-picker>
+        </div>
+        <div> Address
+            <input nz-input placeholder="Enter your address" [(ngModel)]="address" />
+        </div>
+        <div> Comments
+        <textarea rows="5" nz-input [(ngModel)]="inputComment" placeholder="Is there any requirment of the host or the house? Is there anything else that the sitter should pay special attention to?"></textarea>
+        </div> 
+    </div>
+    
+    <div class="petSitting" *ngIf="postType=='sitting'">
+        <div>Pet Type(s):
+            <nz-select
+            class="tag"
+            [nzMaxTagCount]="5"
+            [nzMaxTagPlaceholder]="tagPlaceHolder"
+            nzMode="multiple"
+            nzPlaceHolder="Please select pet type(s)"
+            [(ngModel)]="listOfSelectedPetType"
+            >
+            <nz-option *ngFor="let option of petTypeList" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+            </nz-select>
+            <ng-template #tagPlaceHolder let-selectedList> and {{ selectedList.length }} more selected </ng-template>
+        </div>
+        <div>Time period:
+            <nz-range-picker
+              nzFormat="yyyy-MM-dd"
+              [nzPlaceHolder]="['Start Time', 'End Time']"
+              ngModel
+              (ngModelChange)="onChange($event)"
+            ></nz-range-picker>
+        </div>
+        <div>Price:
+            <nz-input-number
+            [(ngModel)]="price"
+            [nzMin]="10"
+            [nzMax]="150"
+            [nzStep]="1"
+            [nzFormatter]="formatterDollar"
+            [nzParser]="parserDollar"
+            ></nz-input-number>
+        </div>
+        <div>Address:
+            <input nz-input placeholder="Enter your address" [(ngModel)]="address" />
+        </div>
+        <div>Comments:
+            <textarea rows="5" nz-input [(ngModel)]="inputComment" placeholder="Try to describe more, like house environment, service details and so on..."></textarea>
+        </div>
+        </div>
+    
+    <nz-button-group>
+        <button nz-button (click)="back()">Cancel</button>
+        <button nz-button nzType="primary" (click)="submit()">Update</button>
+    </nz-button-group>

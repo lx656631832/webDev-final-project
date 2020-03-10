@@ -1,0 +1,29 @@
+<nz-layout class="left-layout">
+        <nz-sider>
+          <div class="logo"></div>
+          <ul nz-menu  nzMode="inline">
+            <li nz-menu-item [routerLink]="['information']">
+              <i nz-icon nzType="user"></i>
+              <span>Information</span>
+            </li>
+            <li nz-menu-item [routerLink]="['petlist']">
+              <i nz-icon nzType="gitlab"></i>
+              <span>Petlist</span>
+            </li>
+            <li nz-menu-item [routerLink]="['posts']">
+              <i nz-icon nzType="solution"></i>
+              <span>Posts</span>
+            </li>
+          </ul>
+        </nz-sider>
+        <nz-layout class="right-layout">
+          
+          <nz-content>
+            
+                <router-outlet></router-outlet> 
+             
+          </nz-content>
+          
+        </nz-layout>
+      </nz-layout>
+

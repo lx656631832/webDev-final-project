@@ -1,0 +1,60 @@
+<div>
+    <nz-select name="petType" id="petType" nzPlaceHolder="Select a pet type" [(ngModel)]="petType">
+        <nz-option *ngFor="let item of petTypeList" [nzValue]="item" [nzLabel]="item"></nz-option>
+    </nz-select>
+    <span>{{petType}}</span>
+    <span>$0<input type="range" name="price" min="0" max="150" value="150" [(ngModel)]="price"/>$150</span>
+    <span> Intended price: < ${{price}}</span>
+    <!-- <span [ngStyle]="{ width: '200px' }">
+        <nz-slider [ngStyle]="{ width: '200px' }" [nzTipFormatter]="formatter" name="price" nzMin="0" nzMax="150" [(ngModel)]="price"></nz-slider>
+    </span> -->
+    <!--slider有bug-->
+    
+    <input type="text" name="datePeriod" id="timeInput"  style="width:200px;height:28px;" />
+    <button nz-button nzType="default" (click)="search()"><i nz-icon nzType="search"></i>Search</button>
+    <button nz-button nzType="default" nzShape="circle" (click)="addPost()"><i nz-icon nzType="plus"></i></button>
+</div>
+
+
+
+<!-- <div class="blist">
+    <div id="original" *ngIf="show">
+            the first list
+    <div *ngFor="let item of boardinglist">
+        <a [routerLink]="['boardingdetails',item._id]" routerLinkActive="router-link-active" >
+            {{item._id}}
+        </a>
+    </div>
+    </div>
+    <div id="searchlist" *ngIf="!show">
+            the search list
+    <div *ngFor="let item of searchResult">
+        <a [routerLink]="['boardingdetails',item._id]" routerLinkActive="router-link-active" >
+            {{item.title}}
+        </a>
+    </div>
+    </div>
+</div> -->
+
+
+<nz-list
+      [nzDataSource]="postlist"
+      [nzItemLayout]="'vertical'"
+      [nzRenderItem]="item"
+    >
+      <ng-template #item let-item>
+        <nz-list-item [nzContent]="item.address"  [nzExtra]="extra">
+          <nz-list-item-meta [nzAvatar]="item.avatar" [nzTitle]="nzTitle" [nzDescription]="item.price">
+            <ng-template #nzTitle
+              ><a [routerLink]="['boardingdetails',item._id]">id: {{item.name}}</a></ng-template
+            >
+          </nz-list-item-meta>
+          <ng-template #extra>
+            <img width="272" alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />
+          </ng-template>
+        </nz-list-item>
+      </ng-template>
+      <!-- <ng-template #pagination>
+        <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadData($event)"></nz-pagination>
+      </ng-template> -->
+</nz-list>
